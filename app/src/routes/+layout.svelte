@@ -2,7 +2,9 @@
 	import '../app.postcss';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { fly, fade,scale } from 'svelte/transition';
 	import { toastmsg } from '$lib/stores';
+	import {cubicInOut} from "svelte/easing"
 
 	export let data;
 	$: hideToast = false;
@@ -20,10 +22,10 @@
 </script>
 
 {#if $toastmsg}
-	<!-- {@const msg = () => {
-		setTimeout(() => {hideToast=true}, 4000);
-	}} -->
+
 	<div
+		in:fade={{ duration: 500,delay:0,easing:cubicInOut }}
+		out:fade={{ duration: 1000 ,easing:cubicInOut}}
 		class="bg-gray-800 p-3 rounded-xl inline-block absolute right-4 bottom-4 text-lg text-teal-500 border-2 border-pink-500"
 	>
 		<p>
