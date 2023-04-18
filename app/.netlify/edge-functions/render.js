@@ -832,10 +832,10 @@ var init_module = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestBuilder.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestBuilder.js
 var import_cross_fetch, PostgrestBuilder;
 var init_PostgrestBuilder = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestBuilder.js"() {
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestBuilder.js"() {
     import_cross_fetch = __toESM(require_browser_ponyfill());
     PostgrestBuilder = class {
       constructor(builder) {
@@ -945,18 +945,21 @@ var init_PostgrestBuilder = __esm({
           return postgrestResponse;
         });
         if (!this.shouldThrowOnError) {
-          res = res.catch((fetchError) => ({
-            error: {
-              message: `FetchError: ${fetchError.message}`,
-              details: "",
-              hint: "",
-              code: fetchError.code || ""
-            },
-            data: null,
-            count: null,
-            status: 0,
-            statusText: ""
-          }));
+          res = res.catch((fetchError) => {
+            var _a, _b, _c;
+            return {
+              error: {
+                message: `${(_a = fetchError === null || fetchError === void 0 ? void 0 : fetchError.name) !== null && _a !== void 0 ? _a : "FetchError"}: ${fetchError === null || fetchError === void 0 ? void 0 : fetchError.message}`,
+                details: `${(_b = fetchError === null || fetchError === void 0 ? void 0 : fetchError.stack) !== null && _b !== void 0 ? _b : ""}`,
+                hint: "",
+                code: `${(_c = fetchError === null || fetchError === void 0 ? void 0 : fetchError.code) !== null && _c !== void 0 ? _c : ""}`
+              },
+              data: null,
+              count: null,
+              status: 0,
+              statusText: ""
+            };
+          });
         }
         return res.then(onfulfilled, onrejected);
       }
@@ -964,10 +967,10 @@ var init_PostgrestBuilder = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestTransformBuilder.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestTransformBuilder.js
 var PostgrestTransformBuilder;
 var init_PostgrestTransformBuilder = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestTransformBuilder.js"() {
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestTransformBuilder.js"() {
     init_PostgrestBuilder();
     PostgrestTransformBuilder = class extends PostgrestBuilder {
       /**
@@ -1154,10 +1157,10 @@ var init_PostgrestTransformBuilder = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestFilterBuilder.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestFilterBuilder.js
 var PostgrestFilterBuilder;
 var init_PostgrestFilterBuilder = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestFilterBuilder.js"() {
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestFilterBuilder.js"() {
     init_PostgrestTransformBuilder();
     PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
       /**
@@ -1233,6 +1236,26 @@ var init_PostgrestFilterBuilder = __esm({
         return this;
       }
       /**
+       * Match only rows where `column` matches all of `patterns` case-sensitively.
+       *
+       * @param column - The column to filter on
+       * @param patterns - The patterns to match with
+       */
+      likeAllOf(column, patterns) {
+        this.url.searchParams.append(column, `like(all).{${patterns.join(",")}}`);
+        return this;
+      }
+      /**
+       * Match only rows where `column` matches any of `patterns` case-sensitively.
+       *
+       * @param column - The column to filter on
+       * @param patterns - The patterns to match with
+       */
+      likeAnyOf(column, patterns) {
+        this.url.searchParams.append(column, `like(any).{${patterns.join(",")}}`);
+        return this;
+      }
+      /**
        * Match only rows where `column` matches `pattern` case-insensitively.
        *
        * @param column - The column to filter on
@@ -1240,6 +1263,26 @@ var init_PostgrestFilterBuilder = __esm({
        */
       ilike(column, pattern2) {
         this.url.searchParams.append(column, `ilike.${pattern2}`);
+        return this;
+      }
+      /**
+       * Match only rows where `column` matches all of `patterns` case-insensitively.
+       *
+       * @param column - The column to filter on
+       * @param patterns - The patterns to match with
+       */
+      ilikeAllOf(column, patterns) {
+        this.url.searchParams.append(column, `ilike(all).{${patterns.join(",")}}`);
+        return this;
+      }
+      /**
+       * Match only rows where `column` matches any of `patterns` case-insensitively.
+       *
+       * @param column - The column to filter on
+       * @param patterns - The patterns to match with
+       */
+      ilikeAnyOf(column, patterns) {
+        this.url.searchParams.append(column, `ilike(any).{${patterns.join(",")}}`);
         return this;
       }
       /**
@@ -1473,10 +1516,10 @@ var init_PostgrestFilterBuilder = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestQueryBuilder.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestQueryBuilder.js
 var PostgrestQueryBuilder;
 var init_PostgrestQueryBuilder = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestQueryBuilder.js"() {
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestQueryBuilder.js"() {
     init_PostgrestFilterBuilder();
     PostgrestQueryBuilder = class {
       constructor(url, { headers = {}, schema, fetch: fetch2 }) {
@@ -1552,16 +1595,21 @@ var init_PostgrestQueryBuilder = __esm({
        *
        * `"estimated"`: Uses exact count for low numbers and planned count for high
        * numbers.
+       *
+       * @param options.defaultToNull - Make missing fields default to `null`.
+       * Otherwise, use the default value for the column.
        */
-      insert(values, { count } = {}) {
+      insert(values, { count, defaultToNull = true } = {}) {
         const method = "POST";
         const prefersHeaders = [];
-        const body = values;
+        if (this.headers["Prefer"]) {
+          prefersHeaders.push(this.headers["Prefer"]);
+        }
         if (count) {
           prefersHeaders.push(`count=${count}`);
         }
-        if (this.headers["Prefer"]) {
-          prefersHeaders.unshift(this.headers["Prefer"]);
+        if (!defaultToNull) {
+          prefersHeaders.push("missing=default");
         }
         this.headers["Prefer"] = prefersHeaders.join(",");
         if (Array.isArray(values)) {
@@ -1576,7 +1624,7 @@ var init_PostgrestQueryBuilder = __esm({
           url: this.url,
           headers: this.headers,
           schema: this.schema,
-          body,
+          body: values,
           fetch: this.fetch,
           allowEmpty: false
         });
@@ -1613,26 +1661,40 @@ var init_PostgrestQueryBuilder = __esm({
        *
        * `"estimated"`: Uses exact count for low numbers and planned count for high
        * numbers.
+       *
+       * @param options.defaultToNull - Make missing fields default to `null`.
+       * Otherwise, use the default value for the column. This only applies when
+       * inserting new rows, not when merging with existing rows under
+       * `ignoreDuplicates: false`.
        */
-      upsert(values, { onConflict, ignoreDuplicates = false, count } = {}) {
+      upsert(values, { onConflict, ignoreDuplicates = false, count, defaultToNull = true } = {}) {
         const method = "POST";
         const prefersHeaders = [`resolution=${ignoreDuplicates ? "ignore" : "merge"}-duplicates`];
         if (onConflict !== void 0)
           this.url.searchParams.set("on_conflict", onConflict);
-        const body = values;
+        if (this.headers["Prefer"]) {
+          prefersHeaders.push(this.headers["Prefer"]);
+        }
         if (count) {
           prefersHeaders.push(`count=${count}`);
         }
-        if (this.headers["Prefer"]) {
-          prefersHeaders.unshift(this.headers["Prefer"]);
+        if (!defaultToNull) {
+          prefersHeaders.push("missing=default");
         }
         this.headers["Prefer"] = prefersHeaders.join(",");
+        if (Array.isArray(values)) {
+          const columns = values.reduce((acc, x) => acc.concat(Object.keys(x)), []);
+          if (columns.length > 0) {
+            const uniqueColumns = [...new Set(columns)].map((column) => `"${column}"`);
+            this.url.searchParams.set("columns", uniqueColumns.join(","));
+          }
+        }
         return new PostgrestFilterBuilder({
           method,
           url: this.url,
           headers: this.headers,
           schema: this.schema,
-          body,
+          body: values,
           fetch: this.fetch,
           allowEmpty: false
         });
@@ -1661,12 +1723,11 @@ var init_PostgrestQueryBuilder = __esm({
       update(values, { count } = {}) {
         const method = "PATCH";
         const prefersHeaders = [];
-        const body = values;
+        if (this.headers["Prefer"]) {
+          prefersHeaders.push(this.headers["Prefer"]);
+        }
         if (count) {
           prefersHeaders.push(`count=${count}`);
-        }
-        if (this.headers["Prefer"]) {
-          prefersHeaders.unshift(this.headers["Prefer"]);
         }
         this.headers["Prefer"] = prefersHeaders.join(",");
         return new PostgrestFilterBuilder({
@@ -1674,7 +1735,7 @@ var init_PostgrestQueryBuilder = __esm({
           url: this.url,
           headers: this.headers,
           schema: this.schema,
-          body,
+          body: values,
           fetch: this.fetch,
           allowEmpty: false
         });
@@ -1721,27 +1782,27 @@ var init_PostgrestQueryBuilder = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/version.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/version.js
 var version;
 var init_version = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/version.js"() {
-    version = "1.5.0";
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/version.js"() {
+    version = "1.6.0";
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/constants.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/constants.js
 var DEFAULT_HEADERS;
 var init_constants = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/constants.js"() {
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/constants.js"() {
     init_version();
     DEFAULT_HEADERS = { "X-Client-Info": `postgrest-js/${version}` };
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestClient.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestClient.js
 var PostgrestClient;
 var init_PostgrestClient = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestClient.js"() {
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/PostgrestClient.js"() {
     init_PostgrestQueryBuilder();
     init_PostgrestFilterBuilder();
     init_constants();
@@ -1827,9 +1888,9 @@ var init_PostgrestClient = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/index.js
+// node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/index.js
 var init_module2 = __esm({
-  "node_modules/.pnpm/@supabase+postgrest-js@1.5.0/node_modules/@supabase/postgrest-js/dist/module/index.js"() {
+  "node_modules/.pnpm/@supabase+postgrest-js@1.6.0/node_modules/@supabase/postgrest-js/dist/module/index.js"() {
     init_PostgrestClient();
     init_PostgrestQueryBuilder();
     init_PostgrestFilterBuilder();
@@ -7713,8 +7774,8 @@ var init__ = __esm({
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
     universal_id = "src/routes/+layout.ts";
     server_id = "src/routes/+layout.server.ts";
-    imports = ["_app/immutable/entry/_layout.svelte.05bc5570.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/navigation.2863433f.js", "_app/immutable/chunks/singletons.f0816c0b.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/entry/_layout.ts.9ef41ab4.js", "_app/immutable/chunks/_layout.55c99b6f.js", "_app/immutable/chunks/preload-helper.41c905a7.js"];
-    stylesheets = ["_app/immutable/assets/_layout.a8c71ac4.css"];
+    imports = ["_app/immutable/entry/_layout.svelte.92043dc0.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/navigation.edbda287.js", "_app/immutable/chunks/singletons.3bda7cb5.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/entry/_layout.ts.ee6210bb.js", "_app/immutable/chunks/_layout.6fa0164b.js", "_app/immutable/chunks/preload-helper.41c905a7.js"];
+    stylesheets = ["_app/immutable/assets/_layout.d9a396d0.css"];
     fonts = ["_app/immutable/assets/abel-regular-webfont.0950fa1d.woff", "_app/immutable/assets/archivo.01301fb8.woff2"];
   }
 });
@@ -7771,7 +7832,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    imports2 = ["_app/immutable/entry/error.svelte.e6d310ca.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.f0816c0b.js", "_app/immutable/chunks/index.e0ce6607.js"];
+    imports2 = ["_app/immutable/entry/error.svelte.36e460ba.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.3bda7cb5.js", "_app/immutable/chunks/index.e0ce6607.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -7814,11 +7875,11 @@ var init_page_svelte = __esm({
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
       $$unsubscribe_user();
-      return `<main class="flex h-full w-full justify-center "><div class="max-w-[70%] h-full flex justify-center flex-col gap-y-4"><h1 class="text-3xl font-semibold [font-family:'abelregularfont','sans-serif']">Infinite Stores- Experience the infinite!
+      return `<main class="flex h-full w-full justify-center "><div class="max-w-[70%] h-full flex justify-center flex-col gap-y-4"><h1 class="text-3xl font-semibold font-abelLocal">Infinite Stores- Experience the infinite!
         </h1>
         <p class="text-xl">Best quality products, amazing experience
         </p>
-        <a${add_attribute("href", $user ? "/home" : "/signin", 0)} class="inline-block self-center "><button class="inline-block w-auto h-auto px-4 py-2 border-none btn font-normal text-xl capitalize [font-family:'archivo','sans-serif'] bg-[#112136ff] hover:bg-[#163052] text-sky-200">Get started
+        <a${add_attribute("href", $user ? "/home" : "/signin", 0)} class="inline-block self-center "><button class="inline-block w-auto h-auto px-4 py-2 border-none btn font-normal text-xl capitalize font-archivoLocal bg-[#112136ff] hover:bg-[#163052] text-sky-200">Get started
         </button></a></div></main>`;
     });
   }
@@ -7842,7 +7903,7 @@ var init__3 = __esm({
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
     server_id2 = "src/routes/+page.server.ts";
-    imports3 = ["_app/immutable/entry/_page.svelte.65182916.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js"];
+    imports3 = ["_app/immutable/entry/_page.svelte.0fb63438.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js"];
     stylesheets3 = [];
     fonts3 = [];
   }
@@ -8081,7 +8142,7 @@ var init__5 = __esm({
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
     server_id4 = "src/routes/signin/+page.server.ts";
-    imports5 = ["_app/immutable/entry/signin-page.svelte.80bcd872.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js", "_app/immutable/chunks/singletons.f0816c0b.js", "_app/immutable/chunks/navigation.2863433f.js"];
+    imports5 = ["_app/immutable/entry/signin-page.svelte.d8964988.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js", "_app/immutable/chunks/singletons.3bda7cb5.js", "_app/immutable/chunks/navigation.edbda287.js"];
     stylesheets5 = [];
     fonts5 = [];
   }
@@ -8251,7 +8312,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "wbw2ou"
+  version_hash: "1d9cyxf"
 };
 function get_hooks() {
   return Promise.resolve().then(() => (init_hooks_server(), hooks_server_exports));
@@ -11615,7 +11676,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    client: { "start": { "file": "_app/immutable/entry/start.7b69d32e.js", "imports": ["_app/immutable/entry/start.7b69d32e.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.f0816c0b.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js"], "stylesheets": [], "fonts": [] }, "app": { "file": "_app/immutable/entry/app.62677194.js", "imports": ["_app/immutable/entry/app.62677194.js", "_app/immutable/chunks/preload-helper.41c905a7.js", "_app/immutable/chunks/index.c36e5379.js"], "stylesheets": [], "fonts": [] } },
+    client: { "start": { "file": "_app/immutable/entry/start.39ab0ba0.js", "imports": ["_app/immutable/entry/start.39ab0ba0.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.3bda7cb5.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js"], "stylesheets": [], "fonts": [] }, "app": { "file": "_app/immutable/entry/app.a5bcc64f.js", "imports": ["_app/immutable/entry/app.a5bcc64f.js", "_app/immutable/chunks/preload-helper.41c905a7.js", "_app/immutable/chunks/index.c36e5379.js"], "stylesheets": [], "fonts": [] } },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
