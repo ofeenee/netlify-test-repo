@@ -5,21 +5,81 @@
 
 	export let data: PageData;
 	export let form: ActionData;
-	$: if (form?.providererror) {
-		toastmsg.set("Sorry provider you provided isn't supported!");
-		let setid = setTimeout(() => {
-			toastmsg.set(null);
-			clearTimeout(setid);
-		}, 5000);
+	$: {
+		if (form?.providererror) {
+			toastmsg.set("Sorry, auth provider isn't supported!");
+			let setid = setTimeout(() => {
+				toastmsg.set(null);
+				clearTimeout(setid);
+			}, 5000);
+		} else if (form?.invalidCredentials) {
+			toastmsg.set('Invalid credentials entered');
+			let setid = setTimeout(() => {
+				toastmsg.set(null);
+				clearTimeout(setid);
+			}, 5000);
+		}
 	}
 </script>
 
-<form method="POST" use:enhance>
-	<button formaction="?/signin&provider=github" type="submit" class="btn bg-blue-500 text-sky-200">
-		Signin!
-	</button>
-</form>
-
-<form action="?/signout" method="POST">
-	<button class="btn bg-sky-700"> Signout </button>
-</form>
+<main class="flex h-full justify-center items-center flex-col gap-y-8">
+	<a href="/home">Home</a>
+	<form method="POST" use:enhance>
+		<button
+			formaction="?/signin&provider=discord"
+			type="submit"
+			class="border-none btn font-normal text-xl capitalize font-archivo bg-[#112136ff] hover:bg-[#163052] text-sky-200"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				class="mr-2"
+				viewBox="0 0 24 24"
+				><path
+					fill="currentColor"
+					d="M9.593 10.971c-.542 0-.969.475-.969 1.055c0 .578.437 1.055.969 1.055c.541 0 .968-.477.968-1.055c.011-.581-.427-1.055-.968-1.055zm3.468 0c-.542 0-.969.475-.969 1.055c0 .578.437 1.055.969 1.055c.541 0 .968-.477.968-1.055c-.001-.581-.427-1.055-.968-1.055z"
+				/><path
+					fill="currentColor"
+					d="M17.678 3H4.947A1.952 1.952 0 0 0 3 4.957v12.844c0 1.083.874 1.957 1.947 1.957H15.72l-.505-1.759l1.217 1.131l1.149 1.064L19.625 22V4.957A1.952 1.952 0 0 0 17.678 3zM14.01 15.407s-.342-.408-.626-.771c1.244-.352 1.719-1.13 1.719-1.13c-.39.256-.76.438-1.093.562a6.679 6.679 0 0 1-3.838.398a7.944 7.944 0 0 1-1.396-.41a5.402 5.402 0 0 1-.693-.321c-.029-.021-.057-.029-.085-.048a.117.117 0 0 1-.039-.03c-.171-.094-.266-.16-.266-.16s.456.76 1.663 1.121c-.285.36-.637.789-.637.789c-2.099-.067-2.896-1.444-2.896-1.444c0-3.059 1.368-5.538 1.368-5.538c1.368-1.027 2.669-.998 2.669-.998l.095.114c-1.71.495-2.499 1.245-2.499 1.245s.21-.114.561-.275c1.016-.446 1.823-.57 2.156-.599c.057-.009.105-.019.162-.019a7.756 7.756 0 0 1 4.778.893s-.751-.712-2.366-1.206l.133-.152s1.302-.029 2.669.998c0 0 1.368 2.479 1.368 5.538c0-.001-.807 1.376-2.907 1.443z"
+				/></svg
+			> Signin with discord
+		</button>
+	</form>
+	<h1 class="font-semibold text-lg">OR</h1>
+	<form action="?/signin&withemail=true" method="post" use:enhance>
+		<div class="border-4 border-sky-500 flex flex-col gap-y-4 p-6 rounded-lg">
+			<input
+				type="text"
+				name="emailid"
+				class="input border-2 text-lg"
+				class:border-red-500={form?.noEmaild}
+			/>
+			{#if form?.noEmaild}
+				<p
+					class="text-red-500 italic md:text-base m-[none] text-sm font-medium"
+				>
+					Please enter a emailid 🤷‍♂️
+				</p>
+			{/if}
+			<input
+				type="text"
+				name="password"
+				class="input border-2 text-lg"
+				class:border-red-500={form?.noPassword}
+			/>
+			{#if form?.noPassword}
+				<p
+					class="text-red-500 italic md:text-base text-sm font-medium"
+				>
+					Please enter your password🤷‍♂️
+				</p>
+			{/if}
+			<button
+				class="border-none btn font-normal text-xl capitalize font-archivo bg-[#112136ff] hover:bg-[#163052] text-sky-200"
+			>
+				Signin with email
+			</button>
+		</div>
+	</form>
+</main>

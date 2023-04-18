@@ -1,15 +1,21 @@
 <script lang="ts">
 	import '../app.postcss';
+	import '$lib/assets/fonts/stylesheet.css'
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { fly, fade,scale } from 'svelte/transition';
-	import { toastmsg } from '$lib/stores';
-	import {cubicInOut} from "svelte/easing"
+	import { fade } from 'svelte/transition';
+	import { toastmsg, user } from '$lib/stores';
+	import { cubicInOut } from 'svelte/easing';
 
 	export let data;
-	$: hideToast = false;
 	$: ({ supabase, session } = data);
-
+	$: {
+		if (session?.user) {
+			user.set(session.user);
+		} else if (!session?.user) {
+			user.set(null);
+		}
+	}
 	onMount(() => {
 		const {
 			data: { subscription }
@@ -22,15 +28,23 @@
 </script>
 
 {#if $toastmsg}
-
 	<div
-		in:fade={{ duration: 500,delay:0,easing:cubicInOut }}
-		out:fade={{ duration: 1000 ,easing:cubicInOut}}
-		class="bg-gray-800 p-3 rounded-xl inline-block absolute right-4 bottom-4 text-lg text-teal-500 border-2 border-pink-500"
+		in:fade={{ duration: 400, delay: 0, easing: cubicInOut }}
+		out:fade={{ duration: 600, easing: cubicInOut }}
+		class="bg-gray-900 font-abel p-3 rounded-xl inline-block absolute right-4 bottom-4 text-2xl text-stone-400 font-mono"
 	>
 		<p>
 			{$toastmsg}
 		</p>
 	</div>
 {/if}
+
 <slot />
+
+<!-- 
+	App color pallete
+--dark-purple: #231123ff;
+--rich-black: #110e1eff;
+--oxford-blue: #112136ff;
+--straw: #cad66eff;
+--nyanza: #d4f2dbff; -->
