@@ -23,7 +23,7 @@
 </script>
 
 <main class="flex h-full justify-center items-center flex-col gap-y-8">
-	<a href="/home">Home</a>
+	<a href="/home"><h1 class=""> Home</h1></a>
 	<form method="POST" use:enhance>
 		<button
 			formaction="?/signin&provider=discord"

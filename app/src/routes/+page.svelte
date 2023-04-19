@@ -7,7 +7,7 @@
 console.log(data.session);
 </script>
 <main class="flex h-full w-full justify-center ">
-    <div class="max-w-[70%] h-full flex justify-center flex-col gap-y-4">
+    <div class="max-w-[70%] h-full flex justify-center flex-col gap-y-4 ">
 
         <h1 class="text-3xl font-semibold font-abelLocal">
            Infinite Stores- Experience the infinite!
