@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.postcss';
-	import '$lib/assets/fonts/stylesheet.css'
+	// import '$lib/assets/fonts/stylesheet.css'
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
