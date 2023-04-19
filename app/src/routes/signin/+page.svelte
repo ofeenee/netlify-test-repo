@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { ActionData, PageData } from './$types';
+	import type { ActionData } from './$types';
 	import { toastmsg } from '$lib/stores';
 	import { enhance } from '$app/forms';
 
-	export let data: PageData;
 	export let form: ActionData;
 	$: {
 		if (form?.providererror) {

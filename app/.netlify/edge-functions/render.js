@@ -139,7 +139,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css2) => css2.code).join("\n"),
+          code: Array.from(result.css).map((css) => css.code).join("\n"),
           map: null
           // TODO
         },
@@ -435,7 +435,7 @@ var require_browser_ponyfill = __commonJS({
           };
           if (support.formData) {
             this.formData = function() {
-              return this.text().then(decode3);
+              return this.text().then(decode4);
             };
           }
           this.json = function() {
@@ -486,7 +486,7 @@ var require_browser_ponyfill = __commonJS({
         Request2.prototype.clone = function() {
           return new Request2(this, { body: this._bodyInit });
         };
-        function decode3(body) {
+        function decode4(body) {
           var form = new FormData();
           body.trim().split("&").forEach(function(bytes) {
             if (bytes) {
@@ -2150,18 +2150,18 @@ var init_serializer = __esm({
       }
       _binaryDecode(buffer) {
         const view = new DataView(buffer);
-        const decoder = new TextDecoder();
-        return this._decodeBroadcast(buffer, view, decoder);
+        const decoder2 = new TextDecoder();
+        return this._decodeBroadcast(buffer, view, decoder2);
       }
-      _decodeBroadcast(buffer, view, decoder) {
+      _decodeBroadcast(buffer, view, decoder2) {
         const topicSize = view.getUint8(1);
         const eventSize = view.getUint8(2);
         let offset = this.HEADER_LENGTH + 2;
-        const topic = decoder.decode(buffer.slice(offset, offset + topicSize));
+        const topic = decoder2.decode(buffer.slice(offset, offset + topicSize));
         offset = offset + topicSize;
-        const event = decoder.decode(buffer.slice(offset, offset + eventSize));
+        const event = decoder2.decode(buffer.slice(offset, offset + eventSize));
         offset = offset + eventSize;
-        const data = JSON.parse(decoder.decode(buffer.slice(offset, buffer.byteLength)));
+        const data = JSON.parse(decoder2.decode(buffer.slice(offset, buffer.byteLength)));
         return { ref: null, topic, event, payload: data };
       }
     };
@@ -4361,27 +4361,27 @@ var init_module4 = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/version.js
+// node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/version.js
 var version4;
 var init_version4 = __esm({
-  "node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/version.js"() {
-    version4 = "2.20.0";
+  "node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/version.js"() {
+    version4 = "2.21.0";
   }
 });
 
-// node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/constants.js
+// node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/constants.js
 var DEFAULT_HEADERS4;
 var init_constants4 = __esm({
-  "node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/constants.js"() {
+  "node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/constants.js"() {
     init_version4();
     DEFAULT_HEADERS4 = { "X-Client-Info": `supabase-js/${version4}` };
   }
 });
 
-// node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/fetch.js
+// node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/fetch.js
 var import_cross_fetch2, __awaiter9, resolveFetch3, resolveHeadersConstructor, fetchWithAuth;
 var init_fetch2 = __esm({
-  "node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/fetch.js"() {
+  "node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/fetch.js"() {
     import_cross_fetch2 = __toESM(require_browser_ponyfill());
     __awaiter9 = function(thisArg, _arguments, P, generator) {
       function adopt(value) {
@@ -4446,7 +4446,7 @@ var init_fetch2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/helpers.js
+// node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/helpers.js
 function stripTrailingSlash(url) {
   return url.replace(/\/$/, "");
 }
@@ -4461,11 +4461,11 @@ function applySettingDefaults(options2, defaults) {
   };
 }
 var init_helpers2 = __esm({
-  "node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/helpers.js"() {
+  "node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/helpers.js"() {
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/helpers.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/helpers.js
 function expiresAt(expiresIn) {
   const timeNow = Math.round(Date.now() / 1e3);
   return timeNow + expiresIn;
@@ -4572,8 +4572,8 @@ function generatePKCEVerifier() {
 }
 function sha256(randomString) {
   return __awaiter10(this, void 0, void 0, function* () {
-    const encoder3 = new TextEncoder();
-    const encodedData = encoder3.encode(randomString);
+    const encoder4 = new TextEncoder();
+    const encodedData = encoder4.encode(randomString);
     const hash2 = yield crypto.subtle.digest("SHA-256", encodedData);
     const bytes = new Uint8Array(hash2);
     return Array.from(bytes).map((c) => String.fromCharCode(c)).join("");
@@ -4594,7 +4594,7 @@ function generatePKCEChallenge(verifier) {
 }
 var __awaiter10, isBrowser, localStorageWriteTests, supportsLocalStorage, resolveFetch4, looksLikeFetchResponse, setItemAsync, getItemAsync, removeItemAsync, Deferred;
 var init_helpers3 = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/helpers.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/helpers.js"() {
     __awaiter10 = function(thisArg, _arguments, P, generator) {
       function adopt(value) {
         return value instanceof P ? value : new P(function(resolve) {
@@ -4700,7 +4700,7 @@ var init_helpers3 = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/errors.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/errors.js
 function isAuthError(error2) {
   return typeof error2 === "object" && error2 !== null && "__isAuthError" in error2;
 }
@@ -4709,7 +4709,7 @@ function isAuthApiError(error2) {
 }
 var AuthError, AuthApiError, AuthUnknownError, CustomAuthError, AuthSessionMissingError, AuthInvalidCredentialsError, AuthImplicitGrantRedirectError, AuthPKCEGrantCodeExchangeError, AuthRetryableFetchError;
 var init_errors2 = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/errors.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/errors.js"() {
     AuthError = class extends Error {
       constructor(message, status) {
         super(message);
@@ -4801,7 +4801,7 @@ var init_errors2 = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/fetch.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/fetch.js
 function _request(fetcher, method, url, options2) {
   var _a;
   return __awaiter11(this, void 0, void 0, function* () {
@@ -4875,7 +4875,7 @@ function hasSession(data) {
 }
 var __awaiter11, __rest, _getErrorMessage2, handleError2, _getRequestParams2;
 var init_fetch3 = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/fetch.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/fetch.js"() {
     init_helpers3();
     init_errors2();
     __awaiter11 = function(thisArg, _arguments, P, generator) {
@@ -4944,10 +4944,10 @@ var init_fetch3 = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/GoTrueAdminApi.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/GoTrueAdminApi.js
 var __awaiter12, __rest2, GoTrueAdminApi;
 var init_GoTrueAdminApi = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/GoTrueAdminApi.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/GoTrueAdminApi.js"() {
     init_fetch3();
     init_helpers3();
     init_errors2();
@@ -5252,18 +5252,18 @@ var init_GoTrueAdminApi = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/version.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/version.js
 var version5;
 var init_version5 = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/version.js"() {
-    version5 = "2.22.3";
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/version.js"() {
+    version5 = "2.23.0";
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/constants.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/constants.js
 var GOTRUE_URL, STORAGE_KEY, DEFAULT_HEADERS5, EXPIRY_MARGIN;
 var init_constants5 = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/constants.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/constants.js"() {
     init_version5();
     GOTRUE_URL = "http://localhost:9999";
     STORAGE_KEY = "supabase.auth.token";
@@ -5272,10 +5272,10 @@ var init_constants5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/local-storage.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/local-storage.js
 var localStorageAdapter, local_storage_default;
 var init_local_storage = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/local-storage.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/local-storage.js"() {
     init_helpers3();
     localStorageAdapter = {
       getItem: (key2) => {
@@ -5301,7 +5301,7 @@ var init_local_storage = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/polyfills.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/polyfills.js
 function polyfillGlobalThis() {
   if (typeof globalThis === "object")
     return;
@@ -5321,14 +5321,14 @@ function polyfillGlobalThis() {
   }
 }
 var init_polyfills = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/polyfills.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/polyfills.js"() {
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/GoTrueClient.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/GoTrueClient.js
 var __awaiter13, DEFAULT_OPTIONS, AUTO_REFRESH_TICK_DURATION, AUTO_REFRESH_TICK_THRESHOLD, GoTrueClient;
 var init_GoTrueClient = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/GoTrueClient.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/GoTrueClient.js"() {
     init_GoTrueAdminApi();
     init_constants5();
     init_errors2();
@@ -5497,6 +5497,14 @@ var init_GoTrueClient = __esm({
             let res;
             if ("email" in credentials) {
               const { email, password, options: options2 } = credentials;
+              let codeChallenge = null;
+              let codeChallengeMethod = null;
+              if (this.flowType === "pkce") {
+                const codeVerifier = generatePKCEVerifier();
+                yield setItemAsync(this.storage, `${this.storageKey}-code-verifier`, codeVerifier);
+                codeChallenge = yield generatePKCEChallenge(codeVerifier);
+                codeChallengeMethod = codeVerifier === codeChallenge ? "plain" : "s256";
+              }
               res = yield _request(this.fetch, "POST", `${this.url}/signup`, {
                 headers: this.headers,
                 redirectTo: options2 === null || options2 === void 0 ? void 0 : options2.emailRedirectTo,
@@ -5504,7 +5512,9 @@ var init_GoTrueClient = __esm({
                   email,
                   password,
                   data: (_a = options2 === null || options2 === void 0 ? void 0 : options2.data) !== null && _a !== void 0 ? _a : {},
-                  gotrue_meta_security: { captcha_token: options2 === null || options2 === void 0 ? void 0 : options2.captchaToken }
+                  gotrue_meta_security: { captcha_token: options2 === null || options2 === void 0 ? void 0 : options2.captchaToken },
+                  code_challenge: codeChallenge,
+                  code_challenge_method: codeChallengeMethod
                 },
                 xform: _sessionResponse
               });
@@ -6698,15 +6708,15 @@ var init_GoTrueClient = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/types.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/types.js
 var init_types3 = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/lib/types.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/lib/types.js"() {
   }
 });
 
-// node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/index.js
+// node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/index.js
 var init_module5 = __esm({
-  "node_modules/.pnpm/@supabase+gotrue-js@2.22.3/node_modules/@supabase/gotrue-js/dist/module/index.js"() {
+  "node_modules/.pnpm/@supabase+gotrue-js@2.23.0/node_modules/@supabase/gotrue-js/dist/module/index.js"() {
     init_GoTrueAdminApi();
     init_GoTrueClient();
     init_types3();
@@ -6714,10 +6724,10 @@ var init_module5 = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/SupabaseAuthClient.js
+// node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/SupabaseAuthClient.js
 var SupabaseAuthClient;
 var init_SupabaseAuthClient = __esm({
-  "node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/lib/SupabaseAuthClient.js"() {
+  "node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/lib/SupabaseAuthClient.js"() {
     init_module5();
     SupabaseAuthClient = class extends GoTrueClient {
       constructor(options2) {
@@ -6727,10 +6737,10 @@ var init_SupabaseAuthClient = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/SupabaseClient.js
+// node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/SupabaseClient.js
 var __awaiter14, DEFAULT_GLOBAL_OPTIONS, DEFAULT_DB_OPTIONS, DEFAULT_AUTH_OPTIONS, DEFAULT_REALTIME_OPTIONS, SupabaseClient;
 var init_SupabaseClient = __esm({
-  "node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/SupabaseClient.js"() {
+  "node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/SupabaseClient.js"() {
     init_module();
     init_module2();
     init_module3();
@@ -6940,10 +6950,10 @@ var init_SupabaseClient = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/index.js
+// node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/index.js
 var createClient;
 var init_module6 = __esm({
-  "node_modules/.pnpm/@supabase+supabase-js@2.20.0/node_modules/@supabase/supabase-js/dist/module/index.js"() {
+  "node_modules/.pnpm/@supabase+supabase-js@2.21.0/node_modules/@supabase/supabase-js/dist/module/index.js"() {
     init_SupabaseClient();
     init_module5();
     init_module3();
@@ -6953,59 +6963,797 @@ var init_module6 = __esm({
   }
 });
 
-// node_modules/.pnpm/js-base64@3.7.5/node_modules/js-base64/base64.mjs
-var _hasatob, _hasBuffer, _TD, _TE, b64ch, b64chs, b64tab, b64re, _fromCC, _U8Afrom, _tidyB64, re_btou, cb_btou, btou, atobPolyfill, _atob, _toUint8Array, _decode, _unURI, decode;
-var init_base64 = __esm({
-  "node_modules/.pnpm/js-base64@3.7.5/node_modules/js-base64/base64.mjs"() {
-    _hasatob = typeof atob === "function";
-    _hasBuffer = typeof Buffer === "function";
-    _TD = typeof TextDecoder === "function" ? new TextDecoder() : void 0;
-    _TE = typeof TextEncoder === "function" ? new TextEncoder() : void 0;
-    b64ch = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    b64chs = Array.prototype.slice.call(b64ch);
-    b64tab = ((a) => {
-      let tab = {};
-      a.forEach((c, i) => tab[c] = i);
-      return tab;
-    })(b64chs);
-    b64re = /^(?:[A-Za-z\d+\/]{4})*?(?:[A-Za-z\d+\/]{2}(?:==)?|[A-Za-z\d+\/]{3}=?)?$/;
-    _fromCC = String.fromCharCode.bind(String);
-    _U8Afrom = typeof Uint8Array.from === "function" ? Uint8Array.from.bind(Uint8Array) : (it) => new Uint8Array(Array.prototype.slice.call(it, 0));
-    _tidyB64 = (s2) => s2.replace(/[^A-Za-z0-9\+\/]/g, "");
-    re_btou = /[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/g;
-    cb_btou = (cccc) => {
-      switch (cccc.length) {
-        case 4:
-          var cp = (7 & cccc.charCodeAt(0)) << 18 | (63 & cccc.charCodeAt(1)) << 12 | (63 & cccc.charCodeAt(2)) << 6 | 63 & cccc.charCodeAt(3), offset = cp - 65536;
-          return _fromCC((offset >>> 10) + 55296) + _fromCC((offset & 1023) + 56320);
-        case 3:
-          return _fromCC((15 & cccc.charCodeAt(0)) << 12 | (63 & cccc.charCodeAt(1)) << 6 | 63 & cccc.charCodeAt(2));
-        default:
-          return _fromCC((31 & cccc.charCodeAt(0)) << 6 | 63 & cccc.charCodeAt(1));
-      }
-    };
-    btou = (b) => b.replace(re_btou, cb_btou);
-    atobPolyfill = (asc) => {
-      asc = asc.replace(/\s+/g, "");
-      if (!b64re.test(asc))
-        throw new TypeError("malformed base64.");
-      asc += "==".slice(2 - (asc.length & 3));
-      let u24, bin = "", r1, r2;
-      for (let i = 0; i < asc.length; ) {
-        u24 = b64tab[asc.charAt(i++)] << 18 | b64tab[asc.charAt(i++)] << 12 | (r1 = b64tab[asc.charAt(i++)]) << 6 | (r2 = b64tab[asc.charAt(i++)]);
-        bin += r1 === 64 ? _fromCC(u24 >> 16 & 255) : r2 === 64 ? _fromCC(u24 >> 16 & 255, u24 >> 8 & 255) : _fromCC(u24 >> 16 & 255, u24 >> 8 & 255, u24 & 255);
-      }
-      return bin;
-    };
-    _atob = _hasatob ? (asc) => atob(_tidyB64(asc)) : _hasBuffer ? (asc) => Buffer.from(asc, "base64").toString("binary") : atobPolyfill;
-    _toUint8Array = _hasBuffer ? (a) => _U8Afrom(Buffer.from(a, "base64")) : (a) => _U8Afrom(_atob(a).split("").map((c) => c.charCodeAt(0)));
-    _decode = _hasBuffer ? (a) => Buffer.from(a, "base64").toString("utf8") : _TD ? (a) => _TD.decode(_toUint8Array(a)) : (a) => btou(_atob(a));
-    _unURI = (a) => _tidyB64(a.replace(/[-_]/g, (m0) => m0 == "-" ? "+" : "/"));
-    decode = (src) => _decode(_unURI(src));
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/webcrypto.js
+var webcrypto_default;
+var init_webcrypto = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/webcrypto.js"() {
+    webcrypto_default = crypto;
   }
 });
 
-// node_modules/.pnpm/@supabase+auth-helpers-shared@0.3.3_@supabase+supabase-js@2.20.0/node_modules/@supabase/auth-helpers-shared/dist/index.mjs
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/digest.js
+var init_digest = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/digest.js"() {
+    init_webcrypto();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/buffer_utils.js
+var encoder, decoder, MAX_INT32;
+var init_buffer_utils = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/buffer_utils.js"() {
+    init_digest();
+    encoder = new TextEncoder();
+    decoder = new TextDecoder();
+    MAX_INT32 = 2 ** 32;
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/base64url.js
+var encodeBase64, encode, decodeBase64, decode;
+var init_base64url = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/base64url.js"() {
+    init_buffer_utils();
+    encodeBase64 = (input) => {
+      let unencoded = input;
+      if (typeof unencoded === "string") {
+        unencoded = encoder.encode(unencoded);
+      }
+      const CHUNK_SIZE = 32768;
+      const arr = [];
+      for (let i = 0; i < unencoded.length; i += CHUNK_SIZE) {
+        arr.push(String.fromCharCode.apply(null, unencoded.subarray(i, i + CHUNK_SIZE)));
+      }
+      return btoa(arr.join(""));
+    };
+    encode = (input) => {
+      return encodeBase64(input).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+    };
+    decodeBase64 = (encoded) => {
+      const binary = atob(encoded);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      return bytes;
+    };
+    decode = (input) => {
+      let encoded = input;
+      if (encoded instanceof Uint8Array) {
+        encoded = decoder.decode(encoded);
+      }
+      encoded = encoded.replace(/-/g, "+").replace(/_/g, "/").replace(/\s/g, "");
+      try {
+        return decodeBase64(encoded);
+      } catch (_a) {
+        throw new TypeError("The input to be decoded is not correctly encoded.");
+      }
+    };
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/errors.js
+var init_errors3 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/errors.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/random.js
+var random_default;
+var init_random = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/random.js"() {
+    init_webcrypto();
+    random_default = webcrypto_default.getRandomValues.bind(webcrypto_default);
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/iv.js
+var init_iv = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/iv.js"() {
+    init_errors3();
+    init_random();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/check_iv_length.js
+var init_check_iv_length = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/check_iv_length.js"() {
+    init_errors3();
+    init_iv();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/check_cek_length.js
+var init_check_cek_length = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/check_cek_length.js"() {
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/timing_safe_equal.js
+var init_timing_safe_equal = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/timing_safe_equal.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/env.js
+var init_env = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/env.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/crypto_key.js
+var init_crypto_key = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/crypto_key.js"() {
+    init_env();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/invalid_key_input.js
+var init_invalid_key_input = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/invalid_key_input.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/is_key_like.js
+var init_is_key_like = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/is_key_like.js"() {
+    init_webcrypto();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/decrypt.js
+var init_decrypt = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/decrypt.js"() {
+    init_buffer_utils();
+    init_check_iv_length();
+    init_check_cek_length();
+    init_timing_safe_equal();
+    init_errors3();
+    init_webcrypto();
+    init_crypto_key();
+    init_invalid_key_input();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/zlib.js
+var init_zlib = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/zlib.js"() {
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/is_disjoint.js
+var init_is_disjoint = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/is_disjoint.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/is_object.js
+var init_is_object = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/is_object.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/bogus.js
+var init_bogus = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/bogus.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/aeskw.js
+var init_aeskw = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/aeskw.js"() {
+    init_bogus();
+    init_webcrypto();
+    init_crypto_key();
+    init_invalid_key_input();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/ecdhes.js
+var init_ecdhes = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/ecdhes.js"() {
+    init_buffer_utils();
+    init_webcrypto();
+    init_crypto_key();
+    init_invalid_key_input();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/check_p2s.js
+var init_check_p2s = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/check_p2s.js"() {
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/pbes2kw.js
+var init_pbes2kw = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/pbes2kw.js"() {
+    init_random();
+    init_buffer_utils();
+    init_base64url();
+    init_aeskw();
+    init_check_p2s();
+    init_webcrypto();
+    init_crypto_key();
+    init_invalid_key_input();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/subtle_rsaes.js
+var init_subtle_rsaes = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/subtle_rsaes.js"() {
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/check_key_length.js
+var init_check_key_length = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/check_key_length.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/rsaes.js
+var init_rsaes = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/rsaes.js"() {
+    init_subtle_rsaes();
+    init_bogus();
+    init_webcrypto();
+    init_crypto_key();
+    init_check_key_length();
+    init_invalid_key_input();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/cek.js
+var init_cek = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/cek.js"() {
+    init_errors3();
+    init_random();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/format_pem.js
+var init_format_pem = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/format_pem.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/asn1.js
+var init_asn1 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/asn1.js"() {
+    init_env();
+    init_webcrypto();
+    init_invalid_key_input();
+    init_base64url();
+    init_format_pem();
+    init_errors3();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/jwk_to_key.js
+var init_jwk_to_key = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/jwk_to_key.js"() {
+    init_env();
+    init_webcrypto();
+    init_errors3();
+    init_base64url();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/import.js
+var init_import = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/import.js"() {
+    init_base64url();
+    init_asn1();
+    init_jwk_to_key();
+    init_errors3();
+    init_is_object();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/check_key_type.js
+var init_check_key_type = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/check_key_type.js"() {
+    init_invalid_key_input();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/encrypt.js
+var init_encrypt = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/encrypt.js"() {
+    init_buffer_utils();
+    init_check_iv_length();
+    init_check_cek_length();
+    init_webcrypto();
+    init_crypto_key();
+    init_invalid_key_input();
+    init_errors3();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/aesgcmkw.js
+var init_aesgcmkw = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/aesgcmkw.js"() {
+    init_encrypt();
+    init_decrypt();
+    init_iv();
+    init_base64url();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/decrypt_key_management.js
+var init_decrypt_key_management = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/decrypt_key_management.js"() {
+    init_aeskw();
+    init_ecdhes();
+    init_pbes2kw();
+    init_rsaes();
+    init_base64url();
+    init_errors3();
+    init_cek();
+    init_import();
+    init_check_key_type();
+    init_is_object();
+    init_aesgcmkw();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/validate_crit.js
+var init_validate_crit = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/validate_crit.js"() {
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/validate_algorithms.js
+var init_validate_algorithms = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/validate_algorithms.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/flattened/decrypt.js
+var init_decrypt2 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/flattened/decrypt.js"() {
+    init_base64url();
+    init_decrypt();
+    init_zlib();
+    init_errors3();
+    init_is_disjoint();
+    init_is_object();
+    init_decrypt_key_management();
+    init_buffer_utils();
+    init_cek();
+    init_validate_crit();
+    init_validate_algorithms();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/compact/decrypt.js
+var init_decrypt3 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/compact/decrypt.js"() {
+    init_decrypt2();
+    init_errors3();
+    init_buffer_utils();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/general/decrypt.js
+var init_decrypt4 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/general/decrypt.js"() {
+    init_decrypt2();
+    init_errors3();
+    init_is_object();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/key_to_jwk.js
+var init_key_to_jwk = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/key_to_jwk.js"() {
+    init_webcrypto();
+    init_invalid_key_input();
+    init_base64url();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/export.js
+var init_export = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/export.js"() {
+    init_asn1();
+    init_asn1();
+    init_key_to_jwk();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/encrypt_key_management.js
+var init_encrypt_key_management = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/encrypt_key_management.js"() {
+    init_aeskw();
+    init_ecdhes();
+    init_pbes2kw();
+    init_rsaes();
+    init_base64url();
+    init_cek();
+    init_errors3();
+    init_export();
+    init_check_key_type();
+    init_aesgcmkw();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/flattened/encrypt.js
+var unprotected;
+var init_encrypt2 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/flattened/encrypt.js"() {
+    init_base64url();
+    init_encrypt();
+    init_zlib();
+    init_iv();
+    init_encrypt_key_management();
+    init_errors3();
+    init_is_disjoint();
+    init_buffer_utils();
+    init_validate_crit();
+    unprotected = Symbol();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/general/encrypt.js
+var init_encrypt3 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/general/encrypt.js"() {
+    init_encrypt2();
+    init_errors3();
+    init_cek();
+    init_is_disjoint();
+    init_encrypt_key_management();
+    init_base64url();
+    init_validate_crit();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/subtle_dsa.js
+var init_subtle_dsa = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/subtle_dsa.js"() {
+    init_env();
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/get_sign_verify_key.js
+var init_get_sign_verify_key = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/get_sign_verify_key.js"() {
+    init_webcrypto();
+    init_crypto_key();
+    init_invalid_key_input();
+    init_is_key_like();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/verify.js
+var init_verify = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/verify.js"() {
+    init_subtle_dsa();
+    init_webcrypto();
+    init_check_key_length();
+    init_get_sign_verify_key();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/flattened/verify.js
+var init_verify2 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/flattened/verify.js"() {
+    init_base64url();
+    init_verify();
+    init_errors3();
+    init_buffer_utils();
+    init_is_disjoint();
+    init_is_object();
+    init_check_key_type();
+    init_validate_crit();
+    init_validate_algorithms();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/compact/verify.js
+var init_verify3 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/compact/verify.js"() {
+    init_verify2();
+    init_errors3();
+    init_buffer_utils();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/general/verify.js
+var init_verify4 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/general/verify.js"() {
+    init_verify2();
+    init_errors3();
+    init_is_object();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/epoch.js
+var init_epoch = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/epoch.js"() {
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/secs.js
+var minute, hour, day, week, year;
+var init_secs = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/secs.js"() {
+    minute = 60;
+    hour = minute * 60;
+    day = hour * 24;
+    week = day * 7;
+    year = day * 365.25;
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/jwt_claims_set.js
+var init_jwt_claims_set = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/lib/jwt_claims_set.js"() {
+    init_errors3();
+    init_buffer_utils();
+    init_epoch();
+    init_secs();
+    init_is_object();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/verify.js
+var init_verify5 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/verify.js"() {
+    init_verify3();
+    init_jwt_claims_set();
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/decrypt.js
+var init_decrypt5 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/decrypt.js"() {
+    init_decrypt3();
+    init_jwt_claims_set();
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/compact/encrypt.js
+var init_encrypt4 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwe/compact/encrypt.js"() {
+    init_encrypt2();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/sign.js
+var init_sign = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/sign.js"() {
+    init_subtle_dsa();
+    init_webcrypto();
+    init_check_key_length();
+    init_get_sign_verify_key();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/flattened/sign.js
+var init_sign2 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/flattened/sign.js"() {
+    init_base64url();
+    init_sign();
+    init_is_disjoint();
+    init_errors3();
+    init_buffer_utils();
+    init_check_key_type();
+    init_validate_crit();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/compact/sign.js
+var init_sign3 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/compact/sign.js"() {
+    init_sign2();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/general/sign.js
+var init_sign4 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jws/general/sign.js"() {
+    init_sign2();
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/produce.js
+var init_produce = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/produce.js"() {
+    init_epoch();
+    init_is_object();
+    init_secs();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/sign.js
+var init_sign5 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/sign.js"() {
+    init_sign3();
+    init_errors3();
+    init_buffer_utils();
+    init_produce();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/encrypt.js
+var init_encrypt5 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/encrypt.js"() {
+    init_encrypt4();
+    init_buffer_utils();
+    init_produce();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwk/thumbprint.js
+var init_thumbprint = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwk/thumbprint.js"() {
+    init_digest();
+    init_base64url();
+    init_errors3();
+    init_buffer_utils();
+    init_is_object();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwk/embedded.js
+var init_embedded = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwk/embedded.js"() {
+    init_import();
+    init_is_object();
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwks/local.js
+var init_local = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwks/local.js"() {
+    init_import();
+    init_errors3();
+    init_is_object();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/fetch_jwks.js
+var init_fetch_jwks = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/fetch_jwks.js"() {
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwks/remote.js
+var init_remote = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwks/remote.js"() {
+    init_fetch_jwks();
+    init_env();
+    init_errors3();
+    init_local();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/unsecured.js
+var init_unsecured = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/jwt/unsecured.js"() {
+    init_base64url();
+    init_buffer_utils();
+    init_errors3();
+    init_jwt_claims_set();
+    init_produce();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/base64url.js
+var base64url_exports2 = {};
+__export(base64url_exports2, {
+  decode: () => decode2,
+  encode: () => encode2
+});
+var encode2, decode2;
+var init_base64url2 = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/base64url.js"() {
+    init_base64url();
+    encode2 = encode;
+    decode2 = decode;
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/decode_protected_header.js
+var init_decode_protected_header = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/decode_protected_header.js"() {
+    init_base64url2();
+    init_buffer_utils();
+    init_is_object();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/decode_jwt.js
+var init_decode_jwt = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/util/decode_jwt.js"() {
+    init_base64url2();
+    init_buffer_utils();
+    init_is_object();
+    init_errors3();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/generate.js
+var init_generate = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/runtime/generate.js"() {
+    init_env();
+    init_webcrypto();
+    init_errors3();
+    init_random();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/generate_key_pair.js
+var init_generate_key_pair = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/generate_key_pair.js"() {
+    init_generate();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/generate_secret.js
+var init_generate_secret = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/key/generate_secret.js"() {
+    init_generate();
+  }
+});
+
+// node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/index.js
+var init_browser = __esm({
+  "node_modules/.pnpm/jose@4.14.0/node_modules/jose/dist/browser/index.js"() {
+    init_decrypt3();
+    init_decrypt2();
+    init_decrypt4();
+    init_encrypt3();
+    init_verify3();
+    init_verify2();
+    init_verify4();
+    init_verify5();
+    init_decrypt5();
+    init_encrypt4();
+    init_encrypt2();
+    init_sign3();
+    init_sign2();
+    init_sign4();
+    init_sign5();
+    init_encrypt5();
+    init_thumbprint();
+    init_embedded();
+    init_local();
+    init_remote();
+    init_unsecured();
+    init_export();
+    init_import();
+    init_decode_protected_header();
+    init_decode_jwt();
+    init_errors3();
+    init_generate_key_pair();
+    init_generate_secret();
+    init_base64url2();
+  }
+});
+
+// node_modules/.pnpm/@supabase+auth-helpers-shared@0.3.4_@supabase+supabase-js@2.21.0/node_modules/@supabase/auth-helpers-shared/dist/index.mjs
 function parseSupabaseCookie(str) {
   if (!str) {
     return null;
@@ -7022,8 +7770,9 @@ function parseSupabaseCookie(str) {
       throw new Error(`Unexpected format: ${session.constructor.name}`);
     }
     const [_header, payloadStr, _signature] = session[0].split(".");
-    const payload = decode(payloadStr);
-    const { exp, sub, ...user2 } = JSON.parse(payload);
+    const payload = base64url_exports2.decode(payloadStr);
+    const decoder2 = new TextDecoder();
+    const { exp, sub, ...user2 } = JSON.parse(decoder2.decode(payload));
     return {
       expires_at: exp,
       expires_in: exp - Math.round(Date.now() / 1e3),
@@ -7057,8 +7806,8 @@ function isBrowser2() {
 }
 var __create2, __defProp2, __getOwnPropDesc2, __getOwnPropNames2, __getProtoOf2, __hasOwnProp2, __commonJS2, __copyProps2, __toESM2, require_cookie, import_cookie2, import_cookie, export_parseCookies, export_serializeCookie;
 var init_dist = __esm({
-  "node_modules/.pnpm/@supabase+auth-helpers-shared@0.3.3_@supabase+supabase-js@2.20.0/node_modules/@supabase/auth-helpers-shared/dist/index.mjs"() {
-    init_base64();
+  "node_modules/.pnpm/@supabase+auth-helpers-shared@0.3.4_@supabase+supabase-js@2.21.0/node_modules/@supabase/auth-helpers-shared/dist/index.mjs"() {
+    init_browser();
     __create2 = Object.create;
     __defProp2 = Object.defineProperty;
     __getOwnPropDesc2 = Object.getOwnPropertyDescriptor;
@@ -7093,7 +7842,7 @@ var init_dist = __esm({
           }
           var obj = {};
           var opt = options2 || {};
-          var dec = opt.decode || decode3;
+          var dec = opt.decode || decode4;
           var index6 = 0;
           while (index6 < str.length) {
             var eqIdx = str.indexOf("=", index6);
@@ -7121,7 +7870,7 @@ var init_dist = __esm({
         }
         function serialize3(name, val, options2) {
           var opt = options2 || {};
-          var enc = opt.encode || encode2;
+          var enc = opt.encode || encode4;
           if (typeof enc !== "function") {
             throw new TypeError("option encode is invalid");
           }
@@ -7202,10 +7951,10 @@ var init_dist = __esm({
           }
           return str;
         }
-        function decode3(str) {
+        function decode4(str) {
           return str.indexOf("%") !== -1 ? decodeURIComponent(str) : str;
         }
-        function encode2(val) {
+        function encode4(val) {
           return encodeURIComponent(val);
         }
         function isDate2(val) {
@@ -7227,7 +7976,7 @@ var init_dist = __esm({
   }
 });
 
-// node_modules/.pnpm/@supabase+auth-helpers-sveltekit@0.9.3_@supabase+supabase-js@2.20.0_@sveltejs+kit@1.15.7/node_modules/@supabase/auth-helpers-sveltekit/dist/index.js
+// node_modules/.pnpm/@supabase+auth-helpers-sveltekit@0.9.4_@supabase+supabase-js@2.21.0_@sveltejs+kit@1.15.7/node_modules/@supabase/auth-helpers-sveltekit/dist/index.js
 function supabaseAuthStorageAdapterSveltekitLoad({
   serverSession,
   cookieOptions: {
@@ -7302,7 +8051,7 @@ function createSupabaseLoadClient({
       ...options2 == null ? void 0 : options2.global,
       headers: {
         ...(_a = options2 == null ? void 0 : options2.global) == null ? void 0 : _a.headers,
-        "X-Client-Info": `${"@supabase/auth-helpers-sveltekit"}@${"0.9.3"}`
+        "X-Client-Info": `${"@supabase/auth-helpers-sveltekit"}@${"0.9.4"}`
       }
     },
     auth: {
@@ -7393,7 +8142,7 @@ function createSupabaseServerClient({
       ...options2 == null ? void 0 : options2.global,
       headers: {
         ...(_a = options2 == null ? void 0 : options2.global) == null ? void 0 : _a.headers,
-        "X-Client-Info": `${"@supabase/auth-helpers-sveltekit"}@${"0.9.3"}`
+        "X-Client-Info": `${"@supabase/auth-helpers-sveltekit"}@${"0.9.4"}`
       }
     },
     auth: {
@@ -7410,7 +8159,7 @@ function createSupabaseServerClient({
 }
 var cachedBrowserClient, onAuthStateChangeSubscription;
 var init_dist2 = __esm({
-  "node_modules/.pnpm/@supabase+auth-helpers-sveltekit@0.9.3_@supabase+supabase-js@2.20.0_@sveltejs+kit@1.15.7/node_modules/@supabase/auth-helpers-sveltekit/dist/index.js"() {
+  "node_modules/.pnpm/@supabase+auth-helpers-sveltekit@0.9.4_@supabase+supabase-js@2.21.0_@sveltejs+kit@1.15.7/node_modules/@supabase/auth-helpers-sveltekit/dist/index.js"() {
     init_dist();
     init_module6();
     init_dist();
@@ -7441,9 +8190,9 @@ var init_hooks_server = __esm({
         } = await event.locals.supabase.auth.getSession();
         return session;
       };
-      const types = ["css", "font", "js"];
+      const types2 = ["css", "font", "js"];
       const response = await resolve(event, {
-        preload: ({ type }) => types.includes(type),
+        preload: ({ type }) => types2.includes(type),
         filterSerializedResponseHeaders(name) {
           return name === "content-range";
         }
@@ -7470,7 +8219,7 @@ function json(data, init2) {
   const body = JSON.stringify(data);
   const headers = new Headers(init2?.headers);
   if (!headers.has("content-length")) {
-    headers.set("content-length", encoder.encode(body).byteLength.toString());
+    headers.set("content-length", encoder2.encode(body).byteLength.toString());
   }
   if (!headers.has("content-type")) {
     headers.set("content-type", "application/json");
@@ -7483,7 +8232,7 @@ function json(data, init2) {
 function text(body, init2) {
   const headers = new Headers(init2?.headers);
   if (!headers.has("content-length")) {
-    headers.set("content-length", encoder.encode(body).byteLength.toString());
+    headers.set("content-length", encoder2.encode(body).byteLength.toString());
   }
   return new Response(body, {
     ...init2,
@@ -7493,7 +8242,7 @@ function text(body, init2) {
 function fail(status, data) {
   return new ActionFailure(status, data);
 }
-var HttpError, Redirect, ActionFailure, encoder;
+var HttpError, Redirect, ActionFailure, encoder2;
 var init_chunks = __esm({
   ".svelte-kit/output/server/chunks/index.js"() {
     HttpError = class HttpError2 {
@@ -7535,7 +8284,7 @@ var init_chunks = __esm({
         this.data = data;
       }
     };
-    encoder = new TextEncoder();
+    encoder2 = new TextEncoder();
   }
 });
 
@@ -7719,12 +8468,11 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => Layout
 });
-var css, Layout;
+var Layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_layout.svelte.js"() {
     init_index3();
     init_stores();
-    css = { code: ".foofaa{color:aqua}", map: null };
     Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let supabase;
       let session;
@@ -7733,7 +8481,6 @@ var init_layout_svelte = __esm({
       let { data } = $$props;
       if ($$props.data === void 0 && $$bindings.data && data !== void 0)
         $$bindings.data(data);
-      $$result.css.add(css);
       ({ supabase, session } = data);
       {
         {
@@ -7777,8 +8524,8 @@ var init__ = __esm({
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
     universal_id = "src/routes/+layout.ts";
     server_id = "src/routes/+layout.server.ts";
-    imports = ["_app/immutable/entry/_layout.svelte.57353043.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/navigation.67b49ff5.js", "_app/immutable/chunks/singletons.c2830182.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/entry/_layout.ts.ee6210bb.js", "_app/immutable/chunks/_layout.6fa0164b.js", "_app/immutable/chunks/preload-helper.41c905a7.js"];
-    stylesheets = ["_app/immutable/assets/_layout.29ab7a2d.css"];
+    imports = ["_app/immutable/entry/_layout.svelte.0aae89b7.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/navigation.68330c66.js", "_app/immutable/chunks/singletons.b3632b16.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/entry/_layout.ts.7e17242e.js", "_app/immutable/chunks/_layout.22ca6920.js", "_app/immutable/chunks/preload-helper.41c905a7.js"];
+    stylesheets = ["_app/immutable/assets/_layout.f4a13b25.css"];
     fonts = ["_app/immutable/assets/abel-regular-webfont.0950fa1d.woff", "_app/immutable/assets/archivo.01301fb8.woff2"];
   }
 });
@@ -7814,9 +8561,9 @@ var init_error_svelte = __esm({
     Error$1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $page, $$unsubscribe_page;
       $$unsubscribe_page = subscribe(page, (value) => $page = value);
-      console.log(page.error);
+      console.log($page.error);
       $$unsubscribe_page();
-      return `${escape($page.error.message)}`;
+      return `${escape($page.error?.message)}`;
     });
   }
 });
@@ -7835,7 +8582,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    imports2 = ["_app/immutable/entry/_error.svelte.3be39f25.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.c2830182.js", "_app/immutable/chunks/index.e0ce6607.js"];
+    imports2 = ["_app/immutable/entry/_error.svelte.3bf3b990.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.b3632b16.js", "_app/immutable/chunks/index.e0ce6607.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -7955,9 +8702,6 @@ var init_page_svelte2 = __esm({
     Page2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $user, $$unsubscribe_user;
       $$unsubscribe_user = subscribe(user, (value) => $user = value);
-      let { data } = $$props;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
       $$unsubscribe_user();
       return `${$user ? `<div class="flex h-full justify-center items-center"><form method="POST"><button formaction="?/signout" class="border-none btn font-normal text-xl capitalize font-archivo bg-[#112136ff] hover:bg-[#163052] text-sky-200"><svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 32 32"><path fill="currentColor" d="M6 30h12a2.002 2.002 0 0 0 2-2v-3h-2v3H6V4h12v3h2V4a2.002 2.002 0 0 0-2-2H6a2.002 2.002 0 0 0-2 2v24a2.002 2.002 0 0 0 2 2Z"></path><path fill="currentColor" d="M20.586 20.586L24.172 17H10v-2h14.172l-3.586-3.586L22 10l6 6l-6 6l-1.414-1.414z"></path></svg>SignOut
 		</button></form></div>` : ``}`;
@@ -7983,7 +8727,7 @@ var init__4 = __esm({
     index4 = 3;
     component4 = async () => (await Promise.resolve().then(() => (init_page_svelte2(), page_svelte_exports2))).default;
     server_id3 = "src/routes/home/+page.server.ts";
-    imports4 = ["_app/immutable/entry/home-page.svelte.5746d869.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js"];
+    imports4 = ["_app/immutable/entry/home-page.svelte.556ecdab.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js"];
     stylesheets4 = [];
     fonts4 = [];
   }
@@ -8082,10 +8826,7 @@ var init_page_svelte3 = __esm({
     init_stores();
     init_utils();
     Page3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { data } = $$props;
       let { form } = $$props;
-      if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-        $$bindings.data(data);
       if ($$props.form === void 0 && $$bindings.form && form !== void 0)
         $$bindings.form(form);
       {
@@ -8145,7 +8886,7 @@ var init__5 = __esm({
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
     server_id4 = "src/routes/signin/+page.server.ts";
-    imports5 = ["_app/immutable/entry/signin-page.svelte.d7bb4aff.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js", "_app/immutable/chunks/singletons.c2830182.js", "_app/immutable/chunks/navigation.67b49ff5.js"];
+    imports5 = ["_app/immutable/entry/signin-page.svelte.51db666d.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/stores.3f301dc4.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js", "_app/immutable/chunks/singletons.b3632b16.js", "_app/immutable/chunks/navigation.68330c66.js"];
     stylesheets5 = [];
     fonts5 = [];
   }
@@ -8315,7 +9056,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1llk5xz"
+  version_hash: "hbmhtn"
 };
 function get_hooks() {
   return Promise.resolve().then(() => (init_hooks_server(), hooks_server_exports));
@@ -8326,7 +9067,7 @@ init_chunks();
 init_utils();
 init_index2();
 var DEV = false;
-function negotiate(accept, types) {
+function negotiate(accept, types2) {
   const parts = [];
   accept.split(",").forEach((str, i) => {
     const match = /([^/]+)\/([^;]+)(?:;q=([0-9.]+))?/.exec(str);
@@ -8349,7 +9090,7 @@ function negotiate(accept, types) {
   });
   let accepted;
   let min_priority = Infinity;
-  for (const mimetype of types) {
+  for (const mimetype of types2) {
     const [type, subtype] = mimetype.split("/");
     const priority = parts.findIndex(
       (part) => (part.type === type || part.type === "*") && (part.subtype === subtype || part.subtype === "*")
@@ -8361,9 +9102,9 @@ function negotiate(accept, types) {
   }
   return accepted;
 }
-function is_content_type(request, ...types) {
+function is_content_type(request, ...types2) {
   const type = request.headers.get("content-type")?.split(";", 1)[0].trim() ?? "";
-  return types.includes(type.toLowerCase());
+  return types2.includes(type.toLowerCase());
 }
 function is_form_content_type(request) {
   return is_content_type(
@@ -9359,13 +10100,13 @@ function create_universal_fetch(event, state, fetched, csr, resolve_opts) {
 async function stream_to_string(stream) {
   let result = "";
   const reader = stream.getReader();
-  const decoder = new TextDecoder();
+  const decoder2 = new TextDecoder();
   while (true) {
     const { done, value } = await reader.read();
     if (done) {
       break;
     }
-    result += decoder.decode(value);
+    result += decoder2.decode(value);
   }
   return result;
 }
@@ -10271,7 +11012,7 @@ function once(fn) {
   };
 }
 var INVALIDATED_PARAM = "x-sveltekit-invalidated";
-var encoder2 = new TextEncoder();
+var encoder3 = new TextEncoder();
 async function render_data(event, route, options2, manifest2, state, invalidated_data_nodes, trailing_slash) {
   if (!route.page) {
     return new Response(void 0, {
@@ -10358,9 +11099,9 @@ async function render_data(event, route, options2, manifest2, state, invalidated
     return new Response(
       new ReadableStream({
         async start(controller) {
-          controller.enqueue(encoder2.encode(data));
+          controller.enqueue(encoder3.encode(data));
           for await (const chunk of chunks) {
-            controller.enqueue(encoder2.encode(chunk));
+            controller.enqueue(encoder3.encode(chunk));
           }
           controller.close();
         },
@@ -10755,7 +11496,7 @@ function parse$1(str, options2) {
   }
   var obj = {};
   var opt = options2 || {};
-  var dec = opt.decode || decode2;
+  var dec = opt.decode || decode3;
   var index6 = 0;
   while (index6 < str.length) {
     var eqIdx = str.indexOf("=", index6);
@@ -10783,7 +11524,7 @@ function parse$1(str, options2) {
 }
 function serialize(name, val, options2) {
   var opt = options2 || {};
-  var enc = opt.encode || encode;
+  var enc = opt.encode || encode3;
   if (typeof enc !== "function") {
     throw new TypeError("option encode is invalid");
   }
@@ -10864,10 +11605,10 @@ function serialize(name, val, options2) {
   }
   return str;
 }
-function decode2(str) {
+function decode3(str) {
   return str.indexOf("%") !== -1 ? decodeURIComponent(str) : str;
 }
-function encode(val) {
+function encode3(val) {
   return encodeURIComponent(val);
 }
 function isDate(val) {
@@ -10905,8 +11646,8 @@ function get_cookies(request, url, trailing_slash) {
       if (c && domain_matches(url.hostname, c.options.domain) && path_matches(url.pathname, c.options.path)) {
         return c.value;
       }
-      const decoder = opts?.decode || decodeURIComponent;
-      const req_cookies = parse_1(header, { decode: decoder });
+      const decoder2 = opts?.decode || decodeURIComponent;
+      const req_cookies = parse_1(header, { decode: decoder2 });
       const cookie = req_cookies[name];
       return cookie;
     },
@@ -10914,8 +11655,8 @@ function get_cookies(request, url, trailing_slash) {
      * @param {import('cookie').CookieParseOptions} opts
      */
     getAll(opts) {
-      const decoder = opts?.decode || decodeURIComponent;
-      const cookies2 = parse_1(header, { decode: decoder });
+      const decoder2 = opts?.decode || decodeURIComponent;
+      const cookies2 = parse_1(header, { decode: decoder2 });
       for (const c of Object.values(new_cookies)) {
         if (domain_matches(url.hostname, c.options.domain) && path_matches(url.pathname, c.options.path)) {
           cookies2[c.name] = c.value;
@@ -11679,7 +12420,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["icon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    client: { "start": { "file": "_app/immutable/entry/start.55c3a77f.js", "imports": ["_app/immutable/entry/start.55c3a77f.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.c2830182.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js"], "stylesheets": [], "fonts": [] }, "app": { "file": "_app/immutable/entry/app.3f4293f1.js", "imports": ["_app/immutable/entry/app.3f4293f1.js", "_app/immutable/chunks/preload-helper.41c905a7.js", "_app/immutable/chunks/index.c36e5379.js"], "stylesheets": [], "fonts": [] } },
+    client: { "start": { "file": "_app/immutable/entry/start.8312f403.js", "imports": ["_app/immutable/entry/start.8312f403.js", "_app/immutable/chunks/index.c36e5379.js", "_app/immutable/chunks/singletons.b3632b16.js", "_app/immutable/chunks/index.e0ce6607.js", "_app/immutable/chunks/parse.d12b0d5b.js"], "stylesheets": [], "fonts": [] }, "app": { "file": "_app/immutable/entry/app.3317dbf4.js", "imports": ["_app/immutable/entry/app.3317dbf4.js", "_app/immutable/chunks/preload-helper.41c905a7.js", "_app/immutable/chunks/index.c36e5379.js"], "stylesheets": [], "fonts": [] } },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

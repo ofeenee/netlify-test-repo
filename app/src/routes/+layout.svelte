@@ -40,11 +40,7 @@
 {/if}
 
 <slot />
-<style>
-	:global(.foofaa){
-		color:aqua;
-	}
-</style>
+
 
 <!-- 
 	App color pallete

@@ -7,11 +7,11 @@ dependencies:
 
 devDependencies:
   '@supabase/auth-helpers-sveltekit':
-    specifier: ^0.9.3
-    version: 0.9.3(@supabase/supabase-js@2.20.0)(@sveltejs/kit@1.15.7)
+    specifier: ^0.9.4
+    version: 0.9.4(@supabase/supabase-js@2.21.0)(@sveltejs/kit@1.15.7)
   '@supabase/supabase-js':
-    specifier: ^2.20.0
-    version: 2.20.0
+    specifier: ^2.21.0
+    version: 2.21.0
   '@sveltejs/adapter-auto':
     specifier: ^2.0.0
     version: 2.0.0(@sveltejs/kit@1.15.7)
@@ -603,23 +603,23 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@supabase/auth-helpers-shared@0.3.3(@supabase/supabase-js@2.20.0):
-    resolution: {integrity: sha512-ZwZGffApfyz9MiT3knnZoF1DMWE56H/Q0Mrsn22J9ubhss7/+e7TP3dChxxwlUYqtDmjmLV6OV8W0BANENfUew==}
+  /@supabase/auth-helpers-shared@0.3.4(@supabase/supabase-js@2.21.0):
+    resolution: {integrity: sha512-8I3D0SPHHexkFTSfPg0nZgJSVazWoB3tZDpT6IjRv6w89vDMUzO99Lit4H9anVLF4teW8c/nJJxawDNbDlgbgg==}
     peerDependencies:
       '@supabase/supabase-js': ^2.0.4
     dependencies:
-      '@supabase/supabase-js': 2.20.0
-      js-base64: 3.7.5
+      '@supabase/supabase-js': 2.21.0
+      jose: 4.14.0
     dev: true
 
-  /@supabase/auth-helpers-sveltekit@0.9.3(@supabase/supabase-js@2.20.0)(@sveltejs/kit@1.15.7):
-    resolution: {integrity: sha512-F9ePQK6hi/4P9OKLUVfaCZ0ZLaGkyx4AZG2S/tyBmrEHEIDssbOaX3QDcOB6QFqsVx0MsWWbAkl2DOQNVJTK7g==}
+  /@supabase/auth-helpers-sveltekit@0.9.4(@supabase/supabase-js@2.21.0)(@sveltejs/kit@1.15.7):
+    resolution: {integrity: sha512-Z/ooQZqoT4SefwpZrqYr57Ynt1k8dND0T/8/buYhkZXV5OGf8v1R5zrZI1pzyBOCF7FzOIBuo+hmMZhytZnjag==}
     peerDependencies:
-      '@supabase/supabase-js': ^2.7.1
-      '@sveltejs/kit': ^1.1.0
+      '@supabase/supabase-js': ^2.15.0
+      '@sveltejs/kit': ^1.15.2
     dependencies:
-      '@supabase/auth-helpers-shared': 0.3.3(@supabase/supabase-js@2.20.0)
-      '@supabase/supabase-js': 2.20.0
+      '@supabase/auth-helpers-shared': 0.3.4(@supabase/supabase-js@2.21.0)
+      '@supabase/supabase-js': 2.21.0
       '@sveltejs/kit': 1.15.7(svelte@3.58.0)(vite@4.2.2)
     dev: true
 
@@ -631,8 +631,8 @@ packages:
       - encoding
     dev: true
 
-  /@supabase/gotrue-js@2.22.3:
-    resolution: {integrity: sha512-GBu+YT7jaWgmmVRNPZnT2YmO7TjscjoBVMzMDnr2yPL6C2ImzRmOKIbHnGliDeI5EaEsPPljWoYR4xB+WJb98w==}
+  /@supabase/gotrue-js@2.23.0:
+    resolution: {integrity: sha512-N6o+MMGsPDbdiz0R0Oy9GlgefYFjJJvoBduR16s8c1H3yG2jp6jq+pMEP18P1bg7uk2DljEjyBnVN7Wj7SJ2Zw==}
     dependencies:
       cross-fetch: 3.1.5
     transitivePeerDependencies:
@@ -665,11 +665,11 @@ packages:
       - encoding
     dev: true
 
-  /@supabase/supabase-js@2.20.0:
-    resolution: {integrity: sha512-6sNX4WEaVBbmOS1K2U3PcpAhp0FcjVo1FRSEoj4N+NZ6DIokX+yut8IBhF176pg5kFCdFIL2wyNhf3SltREmWw==}
+  /@supabase/supabase-js@2.21.0:
+    resolution: {integrity: sha512-FW3ZzBoc4orSgfX0dXrmJoXAcI/hiekmqXTkN64vjtUF2Urp3UjyAf71UTtV9Jl6ejHoe3K++e0+Rg9zKUJh5w==}
     dependencies:
       '@supabase/functions-js': 2.1.1
-      '@supabase/gotrue-js': 2.22.3
+      '@supabase/gotrue-js': 2.23.0
       '@supabase/postgrest-js': 1.6.0
       '@supabase/realtime-js': 2.7.2
       '@supabase/storage-js': 2.5.1
@@ -1037,7 +1037,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001480
-      electron-to-chromium: 1.4.367
+      electron-to-chromium: 1.4.368
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -1279,8 +1279,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /electron-to-chromium@1.4.367:
-    resolution: {integrity: sha512-mNuDxb+HpLhPGUKrg0hSxbTjHWw8EziwkwlJNkFUj3W60ypigLDRVz04vU+VRsJPi8Gub+FDhYUpuTm9xiEwRQ==}
+  /electron-to-chromium@1.4.368:
+    resolution: {integrity: sha512-e2aeCAixCj9M7nJxdB/wDjO6mbYX+lJJxSJCXDzlr5YPGYVofuJwGN9nKg2o6wWInjX6XmxRinn3AeJMK81ltw==}
     dev: true
 
   /es5-ext@0.10.62:
@@ -1792,8 +1792,8 @@ packages:
     hasBin: true
     dev: true
 
-  /js-base64@3.7.5:
-    resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
+  /jose@4.14.0:
+    resolution: {integrity: sha512-LSA/XenLPwqk6e2L+PSUNuuY9G4NGsvjRWz6sJcUBmzTLEPJqQh46FHSUxnAQ64AWOkRO6bSXpy3yXuEKZkbIA==}
     dev: true
 
   /js-sdsl@4.4.0:

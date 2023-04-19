@@ -3,7 +3,6 @@
 	import { user } from '$lib/stores';
 	import type { PageData } from './$types';
 
-	export let data: PageData;
 </script>
 
 {#if $user}
