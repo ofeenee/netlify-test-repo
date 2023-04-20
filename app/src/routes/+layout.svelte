@@ -1,9 +1,9 @@
 <script lang="ts">
 	import '../app.postcss';
-	// import '$lib/assets/fonts/stylesheet.css'
+	import '$lib/assets/fonts/stylesheet.css';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 	import { toastmsg, user } from '$lib/stores';
 	import { cubicInOut } from 'svelte/easing';
 
@@ -29,12 +29,13 @@
 
 {#if $toastmsg}
 	<div
-		in:fade={{ duration: 400, delay: 0, easing: cubicInOut }}
-		out:fade={{ duration: 600, easing: cubicInOut }}
-		class="bg-gray-900 font-abel p-3 rounded-xl inline-block absolute right-4 bottom-4 text-2xl text-stone-400 font-mono"
+		in:scale={{ duration: 500, delay: 0, easing: cubicInOut }}
+		out:fade={{ duration: 400, easing: cubicInOut }}
+		class:border-red-600={$toastmsg.error}
+		class="bg-gray-900 font-abelLocal p-3 border-x-4 rounded-xl inline-block absolute right-4 bottom-4 text-2xl text-stone-400 "
 	>
 		<p>
-			{$toastmsg}
+			{$toastmsg.message}
 		</p>
 	</div>
 {/if}

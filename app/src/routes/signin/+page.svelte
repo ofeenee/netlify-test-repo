@@ -6,13 +6,13 @@
 	export let form: ActionData;
 	$: {
 		if (form?.providererror) {
-			toastmsg.set("Sorry, auth provider isn't supported!");
+			toastmsg.set({message: "Invalid provider!"});
 			let setid = setTimeout(() => {
 				toastmsg.set(null);
 				clearTimeout(setid);
 			}, 5000);
 		} else if (form?.invalidCredentials) {
-			toastmsg.set('Invalid credentials entered');
+			toastmsg.set({message: "Invalid creadentials entered",error:true});
 			let setid = setTimeout(() => {
 				toastmsg.set(null);
 				clearTimeout(setid);
@@ -27,7 +27,7 @@
 		<button
 			formaction="?/signin&provider=discord"
 			type="submit"
-			class="border-none btn font-normal text-xl capitalize font-archivo bg-[#112136ff] hover:bg-[#163052] text-sky-200"
+			class="border-none btn font-normal text-xl capitalize font-archivoLocal bg-[#112136ff] hover:bg-[#163052] text-sky-200"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@
 				</p>
 			{/if}
 			<button
-				class="border-none btn font-normal text-xl capitalize font-archivo bg-[#112136ff] hover:bg-[#163052] text-sky-200"
+				class="border-none btn font-normal text-xl capitalize font-archivoLocal bg-[#112136ff] hover:bg-[#163052] text-sky-200"
 			>
 				Signin with email
 			</button>
