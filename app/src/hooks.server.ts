@@ -19,9 +19,7 @@ export const handle = (async ({ resolve, event }) => {
     const types = ["css", "font", "js"];
     const response = await resolve(event, {
         preload: ({ type }) => types.includes(type),
-        filterSerializedResponseHeaders(name) {
-            return name === 'content-range';
-          }
+      
     });
     return response;
 
