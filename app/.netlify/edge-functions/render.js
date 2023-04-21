@@ -8190,9 +8190,7 @@ var init_hooks_server = __esm({
         } = await event.locals.supabase.auth.getSession();
         return session;
       };
-      const types2 = ["css", "font", "js"];
       const response = await resolve(event, {
-        preload: ({ type }) => types2.includes(type),
         filterSerializedResponseHeaders(name) {
           return name === "content-range";
         }
@@ -8524,7 +8522,7 @@ var init__ = __esm({
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
     universal_id = "src/routes/+layout.ts";
     server_id = "src/routes/+layout.server.ts";
-    imports = ["_app/immutable/entry/_layout.svelte.6ef14cb4.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/navigation.13ba21c9.js", "_app/immutable/chunks/singletons.844b0b39.js", "_app/immutable/chunks/index.34936079.js", "_app/immutable/chunks/stores.2ddd9c2b.js", "_app/immutable/entry/_layout.ts.7e17242e.js", "_app/immutable/chunks/_layout.22ca6920.js", "_app/immutable/chunks/preload-helper.41c905a7.js"];
+    imports = ["_app/immutable/entry/_layout.svelte.7114f170.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/navigation.f3814582.js", "_app/immutable/chunks/singletons.04c4503d.js", "_app/immutable/chunks/index.34936079.js", "_app/immutable/chunks/stores.2ddd9c2b.js", "_app/immutable/entry/_layout.ts.7e17242e.js", "_app/immutable/chunks/_layout.22ca6920.js", "_app/immutable/chunks/preload-helper.41c905a7.js"];
     stylesheets = ["_app/immutable/assets/_layout.8436b5f5.css"];
     fonts = ["_app/immutable/assets/abel-regular-webfont.0950fa1d.woff", "_app/immutable/assets/archivo.01301fb8.woff2"];
   }
@@ -8582,7 +8580,7 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     index2 = 1;
     component2 = async () => (await Promise.resolve().then(() => (init_error_svelte(), error_svelte_exports))).default;
-    imports2 = ["_app/immutable/entry/_error.svelte.050822c4.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/singletons.844b0b39.js", "_app/immutable/chunks/index.34936079.js"];
+    imports2 = ["_app/immutable/entry/_error.svelte.cd8712e9.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/singletons.04c4503d.js", "_app/immutable/chunks/index.34936079.js"];
     stylesheets2 = [];
     fonts2 = [];
   }
@@ -8889,7 +8887,7 @@ var init__5 = __esm({
     index5 = 4;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
     server_id4 = "src/routes/signin/+page.server.ts";
-    imports5 = ["_app/immutable/entry/signin-page.svelte.0faf9f3a.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/stores.2ddd9c2b.js", "_app/immutable/chunks/index.34936079.js", "_app/immutable/chunks/parse.d12b0d5b.js", "_app/immutable/chunks/singletons.844b0b39.js", "_app/immutable/chunks/navigation.13ba21c9.js"];
+    imports5 = ["_app/immutable/entry/signin-page.svelte.9bbee0b3.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/stores.2ddd9c2b.js", "_app/immutable/chunks/index.34936079.js", "_app/immutable/chunks/parse.d12b0d5b.js", "_app/immutable/chunks/singletons.04c4503d.js", "_app/immutable/chunks/navigation.f3814582.js"];
     stylesheets5 = [];
     fonts5 = [];
   }
@@ -9059,7 +9057,7 @@ var options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "phyxjn"
+  version_hash: "15xa7yw"
 };
 function get_hooks() {
   return Promise.resolve().then(() => (init_hooks_server(), hooks_server_exports));
@@ -12423,7 +12421,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["icon.png"]),
   mimeTypes: { ".png": "image/png" },
   _: {
-    client: { "start": { "file": "_app/immutable/entry/start.1a9aa1ac.js", "imports": ["_app/immutable/entry/start.1a9aa1ac.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/singletons.844b0b39.js", "_app/immutable/chunks/index.34936079.js", "_app/immutable/chunks/parse.d12b0d5b.js"], "stylesheets": [], "fonts": [] }, "app": { "file": "_app/immutable/entry/app.be09c6cb.js", "imports": ["_app/immutable/entry/app.be09c6cb.js", "_app/immutable/chunks/preload-helper.41c905a7.js", "_app/immutable/chunks/index.3987f63f.js"], "stylesheets": [], "fonts": [] } },
+    client: { "start": { "file": "_app/immutable/entry/start.bdace8ef.js", "imports": ["_app/immutable/entry/start.bdace8ef.js", "_app/immutable/chunks/index.3987f63f.js", "_app/immutable/chunks/singletons.04c4503d.js", "_app/immutable/chunks/index.34936079.js", "_app/immutable/chunks/parse.d12b0d5b.js"], "stylesheets": [], "fonts": [] }, "app": { "file": "_app/immutable/entry/app.01c7e391.js", "imports": ["_app/immutable/entry/app.01c7e391.js", "_app/immutable/chunks/preload-helper.41c905a7.js", "_app/immutable/chunks/index.3987f63f.js"], "stylesheets": [], "fonts": [] } },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
