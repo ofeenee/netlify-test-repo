@@ -42,11 +42,12 @@
 
 <slot />
 
-
-<!-- 
-	App color pallete
+<style>
+/* 	
+App color pallete
 --dark-purple: #231123ff;
 --rich-black: #110e1eff;
 --oxford-blue: #112136ff;
 --straw: #cad66eff;
---nyanza: #d4f2dbff; -->
+--nyanza: #d4f2dbff; */
+</style>

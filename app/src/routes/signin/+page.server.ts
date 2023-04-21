@@ -1,4 +1,4 @@
-import { AuthApiError, isAuthApiError, type Provider } from '@supabase/supabase-js';
+import { AuthApiError, type Provider } from '@supabase/supabase-js';
 import type { Actions } from '../$types';
 import type { PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
