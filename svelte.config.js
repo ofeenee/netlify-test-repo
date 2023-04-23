@@ -28,7 +28,8 @@ const config = {
 			checkOrigin: DEV
 		},
 		prerender: {
-			force: true,
+			// force: true,
+
 		}
 		// outDir: 'build',
 	}
