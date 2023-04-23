@@ -6,13 +6,13 @@
 	export let form: ActionData;
 	$: {
 		if (form?.providererror) {
-			toastmsg.set({message: "Invalid provider!"});
+			toastmsg.set({ message: 'Invalid provider!' });
 			let setid = setTimeout(() => {
 				toastmsg.set(null);
 				clearTimeout(setid);
 			}, 5000);
 		} else if (form?.invalidCredentials) {
-			toastmsg.set({message: "Invalid credentials entered",error:true});
+			toastmsg.set({ message: 'Invalid credentials entered', error: true });
 			let setid = setTimeout(() => {
 				toastmsg.set(null);
 				clearTimeout(setid);
@@ -22,8 +22,8 @@
 </script>
 
 <main class="flex h-full justify-center items-center flex-col gap-y-8">
-	<a href="/home"><h1 class=""> Home</h1></a>
-	<form method="POST" use:enhance>
+	<a href="/home"><h1 class="">Home</h1></a>
+	<form method="POST" use:enhance data-netlify="true">
 		<button
 			formaction="?/signin&provider=discord"
 			type="submit"
@@ -46,7 +46,7 @@
 		</button>
 	</form>
 	<h1 class="font-semibold text-lg">OR</h1>
-	<form action="?/signin&withemail=true" method="post" use:enhance>
+	<form action="?/signin&withemail=true" method="post" use:enhance data-netlify="true">
 		<div class="border-4 border-sky-500 flex flex-col gap-y-4 p-6 rounded-lg">
 			<input
 				type="text"
@@ -55,9 +55,7 @@
 				class:border-red-500={form?.noEmaild}
 			/>
 			{#if form?.noEmaild}
-				<p
-					class="text-red-500 italic md:text-base m-[none] text-sm font-medium"
-				>
+				<p class="text-red-500 italic md:text-base m-[none] text-sm font-medium">
 					Please enter a emailid 🤷‍♂️
 				</p>
 			{/if}
@@ -68,9 +66,7 @@
 				class:border-red-500={form?.noPassword}
 			/>
 			{#if form?.noPassword}
-				<p
-					class="text-red-500 italic md:text-base text-sm font-medium"
-				>
+				<p class="text-red-500 italic md:text-base text-sm font-medium">
 					Please enter your password🤷‍♂️
 				</p>
 			{/if}
