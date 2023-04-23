@@ -12,7 +12,7 @@
 				clearTimeout(setid);
 			}, 5000);
 		} else if (form?.invalidCredentials) {
-			toastmsg.set({message: "Invalid creadentials entered",error:true});
+			toastmsg.set({message: "Invalid credentials entered",error:true});
 			let setid = setTimeout(() => {
 				toastmsg.set(null);
 				clearTimeout(setid);

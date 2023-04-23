@@ -1,0 +1,6 @@
+{
+	"devDependencies": {
+		"sveltekit-superforms": "^0.8.0",
+		"zod": "^3.21.4"
+	}
+}
