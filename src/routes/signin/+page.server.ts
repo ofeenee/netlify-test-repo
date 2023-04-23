@@ -1,5 +1,7 @@
 import { AuthApiError, type Provider } from "@supabase/supabase-js";
 
+export const prerender = false;
+
 import { fail, redirect } from "@sveltejs/kit";
 let OauthProviders = ["google", "discord"];
 
