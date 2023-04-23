@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { ActionData } from './$types';
 	import { toastmsg } from '$lib/stores';
 	import { enhance } from '$app/forms';
 
-	export let form: ActionData;
+	export let form;
 	$: {
 		if (form?.providererror) {
 			toastmsg.set({ message: 'Invalid provider!' });
