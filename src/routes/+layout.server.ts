@@ -1,7 +1,9 @@
-import type { LayoutServerLoad } from './$types';
+export const csr = true;
+export const ssr = true;
+export const prerender = true;
 
-export const load = (async ({ locals: { getSession } }) => {
-	return {
-		session: await getSession()
-	};
-}) satisfies LayoutServerLoad;
+export async function load({ locals: { getSession } }) {
+  return {
+    session: await getSession(),
+  };
+}
