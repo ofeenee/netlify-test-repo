@@ -1,18 +1,17 @@
 import { AuthApiError, type Provider } from "@supabase/supabase-js";
-import type { Actions } from "../$types";
-import type { PageServerLoad } from "./$types";
+
 import { fail, redirect } from "@sveltejs/kit";
 let OauthProviders = ["google", "discord"];
 
-export const load = (async ({ locals }) => {
+export async function load({ locals }) {
   let session = await locals.getSession();
   if (session) {
     throw redirect(303, "/home");
   }
   return {};
-}) satisfies PageServerLoad;
+}
 
-export const actions: Actions = {
+export const actions = {
   signin: async ({ locals, url, request }) => {
     let formData = await request.formData();
     let body = Object.fromEntries(formData);
@@ -41,16 +40,22 @@ export const actions: Actions = {
           return fail(400, {
             noEmaild: true,
           });
-        } else if (!body.password || body.password === "null") {
-          const { data, error } = await client.auth.signInWithOtp({
+        } else if (!body.password || body.password === "otp") {
+          const { error: err } = await client.auth.signInWithOtp({
             email: body.emailid as string,
           });
+
+          if (err) {
+            return fail(400, {
+              message: err?.message || "failed to send otp",
+            });
+          }
           // return fail(400, {
           //   noPassword: true,
           // });
         }
       }
-      const { data, error: err } = await client.auth.verifyOtp({
+      const { error: err } = await client.auth.verifyOtp({
         email: body.emailid as string,
         token: body.password as string,
         type: "email",
