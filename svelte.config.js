@@ -1,5 +1,6 @@
 import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-netlify';
+// import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import { DEV } from 'esm-env';
 
@@ -19,10 +20,11 @@ const config = {
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter({
-			edge:true
+			// runtime: 'nodejs18.x',
+			edge: true
 		}),
-		csrf:{
-			checkOrigin:DEV
+		csrf: {
+			checkOrigin: DEV
 		}
 	}
 };
